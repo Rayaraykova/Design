@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valkrea House | Архитектура и Интериорен Дизайн</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary-color: #262626;
+            --secondary-color: #a38f78;
+            --light-color: #f8f7f5;
+            --accent-color: #d1c6b8;
+            --text-color: #333;
+            --text-light: #777;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text-color);
+            background-color: var(--light-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 600;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 1rem 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+            letter-spacing: 1px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 2.5rem;
+        }
+        
+        nav ul li a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 500;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+        
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+        
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-toggle {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+        
+       
+        .hero {
+            height: 100vh;
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/api/placeholder/1600/900');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            padding: 0 2rem;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero p {
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background-color: var(--secondary-color);
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            border: 2px solid var(--secondary-color);
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            background-color: transparent;
+            color: white;
+        }
+        
+        
+        .about {
+            padding: 8rem 0;
+            background-color: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+            align-items: center;
+        }
+        
+        .about-text h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text-light);
+        }
+        
+        .about-image {
+            position: relative;
+            height: 500px;
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid var(--secondary-color);
+            z-index: -1;
+        }
+        
+        
+        .projects {
+            padding: 8rem 0;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+        
+        .section-header {
+            margin-bottom: 4rem;
+        }
+        
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+        
+        .section-header p {
+            max-width: 600px;
+            margin: 0 auto;
+            color: var(--text-light);
+        }
+        
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            height: 400px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .project-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+            padding: 2rem;
+            transform: translateY(100px);
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-image {
+            transform: scale(1.05);
+        }
+        
+        .project-card:hover .project-overlay {
+            transform: translateY(0);
+        }
+        
+        .project-title {
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .project-category {
+            color: var(--accent-color);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        
+        .project-link {
+            color: white;
+            text-decoration: none;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .project-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            bottom: -4px;
+            left: 0;
+            background-color: white;
+            transition: width 0.3s ease;
+        }
+        
+        
+        .services {
+            padding: 8rem 0;
+            background-color: white;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 3rem;
+            margin-top: 4rem;
+        }
+        
+        .service-card {
+            text-align: center;
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1.5rem;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+        
+        .service-description {
+            color: var(--text-light);
+        }
+        
+        
+        .testimonials {
+            padding: 8rem 0;
+            background-color: var(--light-color);
+            text-align: center;
+        }
+        
+        .testimonial-slider {
+            max-width: 800px;
+            margin: 4rem auto 0;
+            padding: 3rem;
+            background-color: white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        .testimonial-quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.5rem;
+            font-style: italic;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            color: var(--text-color);
+        }
+        
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+        
+        .testimonial-role {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-top: 0.5rem;
+        }
+        
+        
+        .contact {
+            padding: 8rem 0;
+            background-color: white;
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 4rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-details {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            font-size: 1.2rem;
+            color: var(--secondary-color);
+            margin-right: 1rem;
+            margin-top: 0.2rem;
+        }
+        
+        .contact-text h4 {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+        
+        .contact-text p, .contact-text a {
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .contact-text a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 2rem;
+        }
+        
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            border-radius: 50%;
+            margin-right: 1rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-link:hover {
+            background-color: var(--secondary-color);
+            color: white;
+        }
+        
+        .contact-form {
+            background-color: var(--light-color);
+            padding: 3rem;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 1rem;
+            border: 1px solid #ddd;
+            background-color: white;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+        }
+        
+        textarea.form-control {
+            height: 150px;
+            resize: vertical;
+        }
+        
+        .form-btn {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .form-btn:hover {
+            background-color: var(--secondary-color);
+        }
+        
+        
+        footer {
+            background-color: var(--primary-color);
+            color: #aaa;
+            padding: 4rem 0 2rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+        }
+        
+        .footer-about p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .footer-links ul {
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links ul li a {
+            color: #aaa;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-links ul li a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer-newsletter p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter-form {
+            display: flex;
+        }
+        
+        .newsletter-input {
+            flex: 1;
+            padding: 0.8rem;
+            border: none;
+            background-color: #333;
+            color: white;
+        }
+        
+        .newsletter-btn {
+            background-color: var(--secondary-color);
+            color: white;
+            border: none;
+            padding: 0 1.5rem;
+            cursor: pointer;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #333;
+            font-size: 0.9rem;
+        }
+        
+        
+        @media (max-width: 992px) {
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+            
+            .about-image::before {
+                display: none;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            nav ul {
+                display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+            
+            .section-header h2 {
+                font-size: 2rem;
+            }
+            
+            .testimonial-slider {
+                padding: 2rem;
+            }
+            
+            .testimonial-quote {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <a href="#" class="logo">Valkrea House</a>
+            <nav>
+                <ul>
+                    <li><a href="#">Начало</a></li>
+                    <li><a href="#">За нас</a></li>
+                    <li><a href="#">Проекти</a></li>
+                    <li><a href="#">Услуги</a></li>
+                    <li><a href="#">Контакти</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-toggle">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Изключителна Архитектура и Интериорен Дизайн</h1>
+            <p>Създаваме пространства, които вдъхновяват, трансформират и издигат човешкото преживяване чрез внимателен дизайн и прецизно внимание към детайла.</p>
+            <a href="#" class="btn">Разгледайте нашите проекти</a>
+        </div>
+    </section>
+
+    <section class="about">
+        <div class="container about-content">
+            <div class="about-text">
+                <h2>Създаваме пространства с душа</h2>
+                <p>Valkrea House е водеща архитектурна и дизайнерска студия, специализирана в създаването на уникални пространства, които съчетават естетика, функционалност и устойчивост.</p>
+                <p>Нашият екип от опитни архитекти и дизайнери работи в тясно сътрудничество с клиентите, за да разбере техните нужди и да превърне техните мечти в реалност.</p>
+                <p>С внимание към всеки детайл и отдаденост към качеството, ние създаваме пространства, които не само изглеждат красиво, но и подобряват начина, по който хората живеят и работят.</p>
+                <a href="#" class="btn" style="color: white;">Научете повече</a>
+            </div>
+            <div class="about-image">
+                <img src="./images/интериорен дизайн от моята фирма.webp" alt="Интериорен дизайн от Valkrea House">
+            </div>
+        </div>
+    </section>
+
+    <section class="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Избрани Проекти</h2>
+                <p>Разгледайте нашите най-нови и емблематични проекти, които демонстрират нашия уникален подход към дизайна и архитектурата.</p>
+            </div>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img class="project-image" src="./images/резиденция.jpg" alt="Модерна Резиденция">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Модерна Резиденция</h3>
+                        <p class="project-category">Жилищна Архитектура</p>
+                        <a href="#" class="project-link">Вижте проекта</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="./images/градски лофт.jpg" alt="Градски Лофт">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Градски Лофт</h3>
+                        <p class="project-category">Интериорен Дизайн</p>
+                        <a href="#" class="project-link">Вижте проекта</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="./images/крайбрежна вила.jpg" alt="Крайбрежна Вила">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Крайбрежна Вила</h3>
+                        <p class="project-category">Луксозна Архитектура</p>
+                        <a href="#" class="project-link">Вижте проекта</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="./images/офис.png" alt="Минималистичен Офис">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Миминалистичен Офис</h3>
+                        <p class="project-category">Търговски Интериор</p>
+                        <a href="#" class="project-link">Вижте проекта</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="./images/луксозен апартамент.jpg" alt="Луксозен Апартамент">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Луксозен Апартамент</h3>
+                        <p class="project-category">Интериорен Дизайн</p>
+                        <a href="#" class="project-link">Вижте проекта</a>
+                    </div>
+                </div>
+                <div class="project-card">
+                    <img class="project-image" src="./images/хотел.jpeg" alt="Бутиков Хотел">
+                    <div class="project-overlay">
+                        <h3 class="project-title">Бутиков Хотел</h3>
+                        <p class="project-category">Хотелиерство</p>
+                        <a href="#" class="project-link">Вижте проекта</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="services">
+        <div class="container">
+            <div class="section-header">
+                <h2>Нашите Услуги</h2>
+                <p>Предлагаме пълен спектър от архитектурни и дизайнерски услуги, персонализирани според нуждите на всеки клиент.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <h3 class="service-title">Архитектурно Проектиране</h3>
+                    <p class="service-description">От концептуално проектиране до подробни планове за изпълнение, ние създаваме иновативни архитектурни решения, съобразени с вашите нужди и предпочитания.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-couch"></i>
+                    </div>
+                    <h3 class="service-title">Интериорен Дизайн</h3>
+                    <p class="service-description">Нашите интериорни дизайнери създават красиви и функционални вътрешни пространства, които отразяват вашия личен стил и начин на живот.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-drafting-compass"></i>
+                    </div>
+                    <h3 class="service-title">Консултации по Дизайн</h3>
+                    <p class="service-description">Предлагаме експертни съвети и насоки за всички аспекти на вашия проект, от избор на материали до цветови схеми и осветление.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tasks"></i>
+                    </div>
+                    <h3 class="service-title">Управление на Проекти</h3>
+                    <p class="service-description">Координираме всички аспекти на вашия проект, от начало до край, за да гарантираме гладко изпълнение и безпроблемно преживяване.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-tree"></i>
+                    </div>
+                    <h3 class="service-title">Ландшафтен Дизайн</h3>
+                    <p class="service-description">Проектираме красиви външни пространства, които допълват архитектурата и създават хармонична връзка между вътрешните и външните зони.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-paint-roller"></i>
+                    </div>
+                    <h3 class="service-title">Избор на Мебели и Декорация</h3>
+                    <p class="service-description">Помагаме ви да изберете идеалните мебели, осветление, изкуство и аксесоари, за да завършите вашето пространство.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>Клиентски Отзиви</h2>
+                <p>Вижте какво казват нашите клиенти за работата с нас и за резултатите, които постигаме заедно.</p>
+            </div>
+            <div class="testimonial-slider">
+                <div class="testimonial-quote">
+                    "Работата с Valkrea House беше изключително преживяване. Тяхното разбиране на нашата визия и способността им да я превърнат в реалност надмина очакванията ни. Вниманието към детайла и отдадеността към съвършенството е видима във всеки аспект на нашия дом."
+                </div>
+                <div class="testimonial-author">Иван и Мария Петрови</div>
+                <div class="testimonial-role">Резиденция в София</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Свържете се с нас</h2>
+                <p>Имате проект? Нека поговорим за него и ви помогнем да превърнете вашата визия в реалност.</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Информация за контакт</h3>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Адрес</h4>
+                                <p>ул. Шипка 34, София 1000, България</p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Телефон</h4>
+                                <p><a href="tel:+35929876543">+359 2 987 6543</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Имейл</h4>
+                                <p><a href="mailto:info@valkrea.house">info@valkrea.house</a></p>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h4>Работно време</h4>
+                                <p>Понеделник - Петък: 9:00 - 18:00</p>
+                                <p>Събота: 10:00 - 14:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" class="social-link"><i
